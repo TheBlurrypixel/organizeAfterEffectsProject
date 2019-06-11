@@ -1,0 +1,36 @@
+Report created: 
+	6/10/2019	8:31:41 PM
+
+Project name: test.aep
+
+Source files collected to: 
+	C:\Users\mgoch\Desktop\test folder
+
+Source files collected: All
+
+Collected comps:  
+	Comp 1
+	Comp 2
+	Comp 3
+	Comp 4
+	
+Number of collected files:  31
+
+Size of collected files:  105 MB
+
+Collected source files: 
+	C:\Users\mgoch\Desktop\colo\colo.avi
+	Sequence "colo_[00000-00027].iff" at C:\Users\mgoch\Desktop\colo\software_colorbars_image01 with 28 files and 0 auxiliary files
+	C:\Users\mgoch\Desktop\software_colorbars_image01.jpg
+	C:\Users\mgoch\Desktop\test.wav
+	
+Number of missing items:  3
+
+Rendering plug-ins:
+	Classic 3D
+	
+Effects used:  1
+
+Effect:  Tone
+	
+

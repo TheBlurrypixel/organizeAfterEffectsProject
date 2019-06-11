@@ -1,0 +1,152 @@
+﻿<!doctype html>
+<html>
+  <head>
+    <title>Organize Assets</title>
+  	<style>
+  		.button {
+  		  display: inline-block;
+  		  cursor: pointer;
+  		  text-align: center;
+  		}
+
+  		.button:active {
+  		  background-color: #3e8e41;
+  		  box-shadow: 0 5px #666;
+  		  transform: translateY(4px);
+  		}
+
+  		button:focus {outline:0;}
+
+  		.range {
+  			vertical-align: sub;
+  		}
+
+  		body {
+  			text-align:center;
+  			overflow:hidden;
+  		}
+
+  		 .unselectable {
+  		-webkit-user-select: none;
+  		-khtml-user-select: none;
+  		-moz-user-select: none;
+  		-o-user-select: none;
+  		user-select: none;
+  		}
+
+  		.slider {
+  			-webkit-appearance: none;
+  			height: 5px;
+  			border-radius: 3px;
+  			background: #d3d3d3;
+  			outline: none;
+  			opacity: 0.7;
+  			-webkit-transition: .2s;
+  			transition: opacity .2s;
+  		}
+
+  		.slider:hover {
+  			opacity: 1;
+  		}
+
+  		.slider::-webkit-slider-thumb {
+  			-webkit-appearance: none;
+  			appearance: none;
+  			width: 12px;
+  			height: 12px;
+  			border-radius: 50%;
+  			background: #4CAF50;
+  			cursor: pointer;
+  		}
+
+  		.slider::-moz-range-thumb {
+  			width: 12px;
+  			height: 12px;
+  			border-radius: 50%;
+  			background: #4CAF50;
+  			cursor: pointer;
+  		}
+  	</style>
+  	<meta charset="utf-8">
+    <script src="./lib/CSInterface-7.0.0.js"></script>
+		<script language="javascript">
+			// boilerplate code
+			function evalScript(script, callback) {
+				new CSInterface().evalScript(script, callback);
+			}
+
+			// evalScripting a JSX is in same shared context so evaluations are maintained from evalScript to the next
+			function loadJSX(filename, callback) {
+				var csInterface = new CSInterface();
+				var extensionRoot = csInterface.getSystemPath(SystemPath.EXTENSION);
+				csInterface.evalScript('$._ext.evalFiles("' + extensionRoot + '/' + filename + '")', callback);
+			}
+
+			// var MAXNUMROWS = 16;
+			var colorRGB = "#000000";
+			// var MARGIN = "3px";
+			// var MARGINHALF = "2px";
+
+			function setBackgroundColor() {
+				// match the panel background to environment
+				var CSLibrary = new CSInterface();
+				var hostEnv = CSLibrary.getHostEnvironment();
+				var UIColorObj = new UIColor();
+				UIColorObj = hostEnv.appSkinInfo.appBarBackgroundColor;
+				var red = Math.round(UIColorObj.color.red);
+				var green = Math.round(UIColorObj.color.green);
+				var blue = Math.round(UIColorObj.color.blue);
+				var alpha = Math.round(UIColorObj.color.alpha);
+				colorRGB = "#" + red.toString(16) + green.toString(16) + blue.toString(16);
+				document.body.style.backgroundColor = colorRGB;
+			}
+
+			function updatePanel(argString) {
+				// document.body.innerHTML = '';
+				// // this is async
+				// evalScript(argString, function(inRes) {
+				// 	if(!inRes) return;
+				// 	var res = JSON.parse(inRes);
+				// 	var button = res.buttons.pop();
+        //
+				// 	var rowCounter = 0;
+				// 	var divSeparator = document.createElement("div");
+        //
+				// 	document.body.appendChild(divSeparator);
+        //
+				// 	while(button)
+				// 	{
+				// 		if(rowCounter >= res.numRows)
+				// 		{
+				// 			divSeparator = document.createElement("div");
+        //
+				// 			document.body.appendChild(divSeparator);
+				// 			rowCounter = 0;
+				// 		}
+        //
+				// 		addButton(button, divSeparator, res.roundButtons, res.colorize, res.halfsize);
+				// 		button = res.buttons.pop();
+				// 		rowCounter++;
+				// 	}
+				// 	addUI(res.numRows, res.hideOpts, res.roundButtons, res.colorize, res.halfsize, res.tintStrength);
+				// });
+			}
+
+			function onLoaded() {
+				setBackgroundColor();
+				var CSLibrary = new CSInterface();
+				CSLibrary.addEventListener(CSInterface.THEME_COLOR_CHANGED_EVENT, setBackgroundColor);
+
+        // updatePanel("$._ext.scriptsPalette(" + MAXNUMROWS + ",\"" + colorRGB + "\")");
+        updatePanel();
+			}
+
+			function onRunClick() {
+				evalScript("$._ext.runScript()", null);
+			}
+		</script>
+  </head>
+  <body class="unselectable" onLoad="onLoaded()">
+     <button type="button" onclick="onRunClick()">Run Script!</button>
+	</body>
+</html>

@@ -3,19 +3,38 @@
   <head>
     <title>Organize Assets</title>
   	<style>
-  		.button {
-  		  display: inline-block;
+        * {
+            box-sizing: border-box
+        }
+
+        button {
+        width: 100%;
+        height: 100%;
+  		  display: block;
   		  cursor: pointer;
   		  text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+
+        background-color: #e7e7e7;
+        color: black; /* Gray */
   		}
 
-  		.button:active {
+  		button:active {
   		  background-color: #3e8e41;
   		  box-shadow: 0 5px #666;
   		  transform: translateY(4px);
   		}
 
   		button:focus {outline:0;}
+
+      #buttonDiv {
+        width:100%;
+        height:100%;
+        padding-right: 15px;
+        padding-bottom: 15px;
+        position:fixed;
+      }
 
   		.range {
   			vertical-align: sub;
@@ -24,47 +43,6 @@
   		body {
   			text-align:center;
   			overflow:hidden;
-  		}
-
-  		 .unselectable {
-  		-webkit-user-select: none;
-  		-khtml-user-select: none;
-  		-moz-user-select: none;
-  		-o-user-select: none;
-  		user-select: none;
-  		}
-
-  		.slider {
-  			-webkit-appearance: none;
-  			height: 5px;
-  			border-radius: 3px;
-  			background: #d3d3d3;
-  			outline: none;
-  			opacity: 0.7;
-  			-webkit-transition: .2s;
-  			transition: opacity .2s;
-  		}
-
-  		.slider:hover {
-  			opacity: 1;
-  		}
-
-  		.slider::-webkit-slider-thumb {
-  			-webkit-appearance: none;
-  			appearance: none;
-  			width: 12px;
-  			height: 12px;
-  			border-radius: 50%;
-  			background: #4CAF50;
-  			cursor: pointer;
-  		}
-
-  		.slider::-moz-range-thumb {
-  			width: 12px;
-  			height: 12px;
-  			border-radius: 50%;
-  			background: #4CAF50;
-  			cursor: pointer;
   		}
   	</style>
   	<meta charset="utf-8">
@@ -101,7 +79,7 @@
 				document.body.style.backgroundColor = colorRGB;
 			}
 
-			function updatePanel(argString) {
+      //			function updatePanel(argString) {
 				// document.body.innerHTML = '';
 				// // this is async
 				// evalScript(argString, function(inRes) {
@@ -130,7 +108,7 @@
 				// 	}
 				// 	addUI(res.numRows, res.hideOpts, res.roundButtons, res.colorize, res.halfsize, res.tintStrength);
 				// });
-			}
+//			}
 
 			function onLoaded() {
 				setBackgroundColor();
@@ -138,7 +116,7 @@
 				CSLibrary.addEventListener(CSInterface.THEME_COLOR_CHANGED_EVENT, setBackgroundColor);
 
         // updatePanel("$._ext.scriptsPalette(" + MAXNUMROWS + ",\"" + colorRGB + "\")");
-        updatePanel();
+        // updatePanel();
 			}
 
 			function onRunClick() {
@@ -147,6 +125,8 @@
 		</script>
   </head>
   <body class="unselectable" onLoad="onLoaded()">
-     <button type="button" onclick="onRunClick()">Run Script!</button>
+      <div id="buttonDiv">
+        <button type="button" onclick="onRunClick()">Organize Project</button>
+      </div>
 	</body>
 </html>
